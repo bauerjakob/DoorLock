@@ -31,12 +31,8 @@ const useStyles = createStyles((theme) => ({
 export function FooterSimple() {
   const links = [
     {
-      label: "Contact",
-      link: ""
-    },
-    {
-      label: "Privacy",
-      link: ""
+      label: "GitHub",
+      link: "https://github.com/bauerjakob/DoorLock"
     }
   ];
   const { classes } = useStyles();
@@ -45,7 +41,6 @@ export function FooterSimple() {
       color="dimmed"
       key={link.label}
       href={link.link}
-      onClick={(event) => event.preventDefault()}
       size="sm"
     >
       {link.label}
@@ -55,7 +50,6 @@ export function FooterSimple() {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
-        {/* <MantineLogo size={28} /> */}
         <Group></Group>
         <Group className={classes.links}>{items}</Group>
       </Container>

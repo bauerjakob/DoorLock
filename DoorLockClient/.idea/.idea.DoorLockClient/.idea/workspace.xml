@@ -4,20 +4,7 @@
     <projectFile>DoorLockClient.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccbc6743-cc5a-4728-9330-ce9493dd5608" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DoorLockClient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DoorLockClient/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DoorLockClient.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DoorLockClient.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/DoorLockService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/DoorLockService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockContractTruffle/contracts/DoorLock.sol" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockContractTruffle/contracts/DoorLock.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/components/ConnectToWallet/ConnectToWallet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/components/ConnectToWallet/ConnectToWallet.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/components/ConnectedCard/ConnectedCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/components/ConnectedCard/ConnectedCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/components/HeaderMegaMenu/HeaderMegaMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/components/HeaderMegaMenu/HeaderMegaMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/components/ToogleLockCard/ToogleLockCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/components/ToogleLockCard/ToogleLockCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/redux/slices/doorLockSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/redux/slices/doorLockSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/redux/slices/metaMaskSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/redux/slices/metaMaskSlice.ts" afterDir="false" />
-    </list>
+    <list default="true" id="ccbc6743-cc5a-4728-9330-ce9493dd5608" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,7 +59,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1679220203966</updated>
-      <workItem from="1679220204845" duration="9140000" />
+      <workItem from="1679220204845" duration="9766000" />
     </task>
     <servers />
   </component>
