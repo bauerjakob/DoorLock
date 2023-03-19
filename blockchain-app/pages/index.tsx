@@ -5,13 +5,14 @@ import { useWeb3React } from "@web3-react/core";
 import { useEffect } from "react";
 import { Web3Provider } from '@ethersproject/providers'
 
-import { createStyles, getStylesRef, rem } from "@mantine/core";
+import { createStyles, Flex, getStylesRef, Group, rem } from "@mantine/core";
 import { useDispatch, useSelector } from 'react-redux'
 import { setHasMetamask } from '@/redux/slices/metaMaskSlice'
 import ConnectToWallet from '@/components/ConnectToWallet/ConnectToWallet'
 import { HeaderMegaMenu } from '@/components/HeaderMegaMenu/HeaderMegaMenu'
 import { FooterSimple } from '@/components/FooterSimple/FooterSimple';
 import ConnectedCard from '@/components/ConnectedCard/ConnectedCard';
+import ToggleLockCard from '@/components/ToogleLockCard/ToogleLockCard';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -57,11 +58,21 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <HeaderMegaMenu />
-        <div className={classes.wrapper}>
-          { hasMetaMask === true && !active ? <ConnectToWallet></ConnectToWallet> : <></>}
-          { active ? <ConnectedCard /> : <></>}
-        </div>
-        <FooterSimple />
+
+        <Flex direction="column" justify="space-between" h="100%">
+          <div className={classes.wrapper}>
+            { hasMetaMask === true && !active ? <ConnectToWallet></ConnectToWallet> : <></>}
+            { active ?
+            <Group>
+              <ConnectedCard />
+              <ToggleLockCard />
+            </Group>
+
+            : <></>}
+          </div>
+          <FooterSimple />
+        </Flex>
+
       </main>
     </>
   )

@@ -22,7 +22,8 @@ abstract contract Ownable
         _;
     }
 
-    function transferOwnership(address newOwner) public virtual onlyOwner {
+    function transferOwnership(address newOwner) public virtual onlyOwner
+    {
         _owner = newOwner;
     }
 }

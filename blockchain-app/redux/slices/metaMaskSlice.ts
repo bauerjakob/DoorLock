@@ -15,4 +15,3 @@ export const metaMaskSlice = createSlice(
 
 export const { setHasMetamask } = metaMaskSlice.actions;
 export default metaMaskSlice.reducer;
-
