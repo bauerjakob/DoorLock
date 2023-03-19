@@ -4,14 +4,14 @@ export const doorLockSlice = createSlice(
 {
     name: 'doorLock',
     initialState: {
-        doorOpen: false
+        doorState: false
     },
     reducers: {
-      setDoorOpen: (state, action) => {
-        state.doorOpen = action.payload
+      setDoorState: (state, action) => {
+        state.doorState = action.payload
       },
     }
 });
 
-export const { setDoorOpen } = doorLockSlice.actions;
+export const { setDoorState } = doorLockSlice.actions;
 export default doorLockSlice.reducer;

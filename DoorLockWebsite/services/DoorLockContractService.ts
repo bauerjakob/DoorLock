@@ -5,45 +5,43 @@ import appsettings from '../appsettings.json'
 import abi from '../abis/DoorLockAbi.json'
 
 export default class DoorLockContractService {
-    private _active: boolean;
-    private _libary: Web3Provider | undefined;
+    private _web3Provider: Web3Provider | undefined;
 
-    constructor()
+    constructor(web3Provider: Web3Provider)
     {
-        const { active, library } = useWeb3React<Web3Provider>()
-        
-        this._active = active;
-        this._libary = library;
+        this._web3Provider = web3Provider;
     }
 
     public async GetDoorState() : Promise<boolean>
     {
-        if (this._active)
-        {
-            throw new Error("Please install metamask");
-        }
-
-        const signer: any = this._libary?.getSigner();
-        const contractAddress = appsettings.contractAddress;
-        const contract = new ethers.Contract(contractAddress, abi, signer);
+        const contract = this.GetContract();
 
         const currentDoorState = await contract.DoorState();
         return currentDoorState as boolean;
     }
 
+    public StartListenToDoorStateChanges() : Promise<ethers.Contract>
+    {
+        const contract = this.GetContract();
+
+        return contract.on("DoorStateChanged", (newState: boolean) => {
+            console.log("DoorStateChanged", newState)
+        });
+    }
+    
 
     public async ToggleDoorState() : Promise<void>
     {
-        if (this._active)
-        {
-            throw new Error("Please install metamask");
-        }
-
-        const signer: any = this._libary?.getSigner();
-        const contractAddress = appsettings.contractAddress;
-        const contract = new ethers.Contract(contractAddress, abi, signer);
+        const contract = this.GetContract();
 
         await contract.toggleDoor();
+    }
+
+    private GetContract() : ethers.Contract {
+        const signer: any = this._web3Provider?.getSigner();
+        const contractAddress = appsettings.contractAddress;
+        const contract = new ethers.Contract(contractAddress, abi, signer);
+        return contract;
     }
 }
 

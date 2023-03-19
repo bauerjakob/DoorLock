@@ -1,5 +1,12 @@
 import DoorLockContractService from "@/services/DoorLockContractService";
+import { Web3Provider } from "@ethersproject/providers";
 import { Card, Title, createStyles, rem, Text, Divider, Group, Badge, Button } from "@mantine/core";
+import { useWeb3React } from "@web3-react/core";
+import appsettings from '@/appsettings.json'
+import abi from '@/abis/DoorLockAbi.json'
+import { ethers } from "ethers";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const useStyles = createStyles((theme) => ({
     card: {
@@ -14,19 +21,29 @@ const useStyles = createStyles((theme) => ({
   }));
 
 export default function ToggleLockCard() {
-    const { classes, theme } = useStyles();
+    const { classes } = useStyles();
+    const { active, library } = useWeb3React<Web3Provider>()
+    const { doorState } = useSelector((state: any) => state.doorLock)
+
+
+    const doorLockService = new DoorLockContractService(library!)
+    
 
     async function OnToggleClicked()
     {
-        const doorLockService = new DoorLockContractService() 
+        if (library == undefined) {
+            console.log("web 3 provider is undefined");
+            return;
+        }
+
         try
         {
             await doorLockService.ToggleDoorState();
 
         }   
-        catch
+        catch (ex)
         {
-
+            console.log(ex);
         }
     }
 
@@ -35,7 +52,7 @@ export default function ToggleLockCard() {
         <Card withBorder radius="md" className={classes.card}>
             <Group position="apart">
                 <Title className={classes.title}>Toogle Lock</Title>
-                <Badge size="xl" variant="outline" color="green">Open</Badge>
+                <Badge size="xl" variant="outline" color={doorState ? "green" : "blue"}>{doorState ? "Open" : "Closed"}</Badge>
             </Group>
             <Divider />
             <Group>

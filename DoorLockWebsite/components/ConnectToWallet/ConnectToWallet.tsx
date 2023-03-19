@@ -44,9 +44,9 @@ const useStyles = createStyles((theme) => ({
 
 
 export default function ConnectToWallet() {
-  const { classes, theme } = useStyles();
+  const { classes } = useStyles();
   const dispatch = useDispatch();
-  const { active, account, library, connector, activate, deactivate } = useWeb3React<Web3Provider>()
+  const { activate } = useWeb3React<Web3Provider>()
 
 
 
