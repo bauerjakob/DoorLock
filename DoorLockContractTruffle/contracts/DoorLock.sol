@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
+pragma solidity >=0.4.22 <0.9.0;
 
 import './Ownable.sol';
 
@@ -17,7 +16,7 @@ contract DoorLock is Ownable
         DoorState = false;
     }
 
-    event DoorStateChanged(bool newState);
+    event DoorStateChanged (bool newState);
     
     function toggleDoor() public onlyOwner()
     {
