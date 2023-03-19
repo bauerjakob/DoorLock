@@ -1,63 +1,122 @@
 import DoorLockContractService from "@/services/DoorLockContractService";
 import { Web3Provider } from "@ethersproject/providers";
-import { Card, Title, createStyles, rem, Text, Divider, Group, Badge, Button } from "@mantine/core";
+import { Card, Title, createStyles, rem, Text, Divider, Group, Badge, Button, LoadingOverlay } from "@mantine/core";
 import { useWeb3React } from "@web3-react/core";
 import appsettings from '@/appsettings.json'
 import abi from '@/abis/DoorLockAbi.json'
 import { ethers } from "ethers";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { DoorStates, setDoorState } from "@/redux/slices/doorLockSlice";
 
 const useStyles = createStyles((theme) => ({
     card: {
-      width: '100%',
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+        width: '100%',
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     },
-  
+
     title: {
-      fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-      fontWeight: 700,
+        fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+        fontWeight: 700,
     },
-  }));
+}));
 
 export default function ToggleLockCard() {
     const { classes } = useStyles();
-    const { active, library } = useWeb3React<Web3Provider>()
+    const { library } = useWeb3React<Web3Provider>()
     const { doorState } = useSelector((state: any) => state.doorLock)
+    const dispatch = useDispatch();
 
+    const getContract = () => {
+        const signer: any = library?.getSigner();
+        const contractAddress = appsettings.contractAddress;
+        return new ethers.Contract(contractAddress, abi, signer);
+    }
 
-    const doorLockService = new DoorLockContractService(library!)
-    
-
-    async function OnToggleClicked()
-    {
+    async function OnOpenDoorClicked() {
         if (library == undefined) {
             console.log("web 3 provider is undefined");
             return;
         }
 
-        try
-        {
-            await doorLockService.ToggleDoorState();
+        try {
+            const contract = getContract();
+            await contract.openDoor();
+            dispatch(setDoorState(DoorStates.Pending));
 
-        }   
-        catch (ex)
-        {
+        }
+        catch (ex) {
             console.log(ex);
         }
     }
 
+    async function OnCloseDoorClicked() {
+        if (library == undefined) {
+            console.log("web 3 provider is undefined");
+            return;
+        }
+
+        try {
+            const contract = getContract();
+            await contract.closeDoor();
+            dispatch(setDoorState(DoorStates.Pending));
+
+        }
+        catch (ex) {
+            console.log(ex);
+        }
+    }
+
+    let badgeColor;
+    let badgeText;
+    switch (doorState) {
+        case DoorStates.Open:
+            badgeColor = "green"
+            badgeText = "Open"
+            break;
+
+        case DoorStates.Closed:
+            badgeColor = "red"
+            badgeText = "Locked"
+            break;
+
+        case DoorStates.Pending:
+            badgeColor = "gray"
+            badgeText = "Pending"
+            break;
+
+    }
+
     return (
-    <>
-        <Card withBorder radius="md" className={classes.card}>
-            <Group position="apart">
-                <Title className={classes.title}>Toogle Lock</Title>
-                <Badge size="xl" variant="outline" color={doorState ? "green" : "blue"}>{doorState ? "Open" : "Closed"}</Badge>
-            </Group>
-            <Divider />
-            <Group>
-                <Button mt={20} onClick={async () => await OnToggleClicked()}>Togle Lock</Button>
-            </Group>
-        </Card>
-    </>);
+        <>
+            <Card withBorder radius="md" className={classes.card}>
+                <Group position="apart">
+                    <Text className={classes.title}>Door lock</Text>
+                    <Badge size="lg" mb={2} variant="outline" color={badgeColor}>{badgeText}</Badge>
+                </Group>
+                <Divider mt={5} />
+                <Group>
+                    {
+                        doorState == DoorStates.Open ?
+                            <Button mt={20} onClick={async () => await OnCloseDoorClicked()}>Lock door</Button> : 
+                            <></>
+                    }
+                    {
+                        doorState == DoorStates.Closed ?
+                            <Button mt={20} onClick={async () => await OnOpenDoorClicked()}>Open door</Button> : 
+                            <></>
+                    }
+                    {
+                        doorState == DoorStates.Pending ?
+                            (
+                                <Group>
+                                    <LoadingOverlay visible></LoadingOverlay>
+                                    <Button mt={20} disabled>Pending</Button>
+                                </Group>
+                            ) : 
+                            <></>
+                    }
+                </Group>
+            </Card>
+        </>);
 }

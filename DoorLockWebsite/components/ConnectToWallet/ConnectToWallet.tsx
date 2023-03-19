@@ -1,4 +1,4 @@
-import { setHasMetamask } from "@/redux/slices/metaMaskSlice";
+import { HasMetaMask, setHasMetamask } from "@/redux/slices/metaMaskSlice";
 import { injected } from "@/utils/connectors";
 import { Web3Provider } from "@ethersproject/providers";
 import { Card, SimpleGrid, Text, UnstyledButton, createStyles, rem, Divider } from "@mantine/core";
@@ -52,12 +52,9 @@ export default function ConnectToWallet() {
 
   async function connectToMetaMask() {
 
-    // const dispatch = useDispatch();
-
     if (typeof (window as any).ethereum !== "undefined") {
         try {
             await activate(injected);
-            dispatch(setHasMetamask(true));
         } catch (e) {
             console.log(e);
         }

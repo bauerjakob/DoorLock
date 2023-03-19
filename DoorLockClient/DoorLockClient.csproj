@@ -9,6 +9,8 @@
 
     <ItemGroup>
       <PackageReference Include="Nethereum.Contracts" Version="4.13.0" />
+      <PackageReference Include="Nethereum.JsonRpc.WebSocketClient" Version="4.13.0" />
+      <PackageReference Include="Nethereum.RPC.Reactive" Version="4.13.0" />
       <PackageReference Include="Nethereum.Web3" Version="4.13.0" />
     </ItemGroup>
 

@@ -1,10 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit"
 
+export enum DoorStates
+{
+  Open,
+  Closed,
+  Pending
+}
+
 export const doorLockSlice = createSlice(
 {
     name: 'doorLock',
     initialState: {
-        doorState: false
+        doorState: DoorStates.Pending
     },
     reducers: {
       setDoorState: (state, action) => {

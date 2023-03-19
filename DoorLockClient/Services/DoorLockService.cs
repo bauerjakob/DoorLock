@@ -1,6 +1,8 @@
 using DoorLockClient.Config;
 using DoorLockClient.Models;
 using Nethereum.Contracts;
+using Nethereum.JsonRpc.WebSocketStreamingClient;
+using Nethereum.RPC.Reactive.Eth.Subscriptions;
 using Nethereum.Web3;
 using Org.BouncyCastle.Asn1;
 
@@ -8,7 +10,7 @@ namespace DoorLockClient.Services;
 
 public class DoorLockService
 {
-    private const string DoorStateFunction = "DoorOpen"; 
+    private const string DoorStateFunction = "DoorState"; 
         
     private readonly string _url;
     private readonly string _contractAddress;
@@ -37,9 +39,4 @@ public class DoorLockService
 
         return doorOpen ? DoorLockState.Open : DoorLockState.Closed;
     }
-
-
-
-
-
 }

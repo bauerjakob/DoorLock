@@ -1,10 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit"
 
+export enum HasMetaMask {
+  Yes,
+  No,
+  Pending
+}
+
 export const metaMaskSlice = createSlice(
 {
     name: 'metaMask',
     initialState: {
-        hasMetaMask: false
+        hasMetaMask: HasMetaMask.Pending
     },
     reducers: {
       setHasMetamask: (state, action) => {

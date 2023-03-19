@@ -14,13 +14,20 @@ contract DoorLock is Ownable
     constructor()
     {
         DoorState = false;
+        emit DoorStateChanged(DoorState);
     }
 
     event DoorStateChanged (bool newState);
     
-    function toggleDoor() public onlyOwner()
+    function openDoor() public onlyOwner()
     {
-        DoorState = !DoorState;
+        DoorState = true;
+        emit DoorStateChanged(DoorState);
+    }
+
+    function closeDoor() public onlyOwner()
+    {
+        DoorState = false;
         emit DoorStateChanged(DoorState);
     }
 }

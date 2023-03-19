@@ -14,13 +14,13 @@ export function HeaderMegaMenu() {
                 <Group position="apart" sx={{ height: '100%' }}>
                     <Group>
                         <Center>
-                            <Image src={"/logos/metamask.svg"} alt={""} width={40} height={40}></Image>
-                            <Text size={'lg'} weight={700} ml={10}>MetaMask</Text>
+                            <Image src={"/logos/website.svg"} alt={""} width={40} height={40}></Image>
+                            <Text size={'lg'} weight={700} ml={10}>HomePortal</Text>
                         </Center>
                     </Group>
                     <Group>
-                        {active ? <Badge size="xl" variant="dot">Connected</Badge> :
-                            <Button>Connect</Button>
+                        {active ? <Badge size="lg" variant="dot" color="green">Connected</Badge> :
+                            <></>
                         }
                     </Group>
                 </Group>

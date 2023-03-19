@@ -5,9 +5,9 @@ import { useWeb3React } from "@web3-react/core";
 import { useEffect } from "react";
 import { Web3Provider } from '@ethersproject/providers'
 
-import { createStyles, Flex, getStylesRef, Group, rem } from "@mantine/core";
+import { createStyles, Divider, Flex, getStylesRef, Group, Header, rem, Text, Title } from "@mantine/core";
 import { useDispatch, useSelector } from 'react-redux'
-import { setHasMetamask } from '@/redux/slices/metaMaskSlice'
+import { HasMetaMask, setHasMetamask } from '@/redux/slices/metaMaskSlice'
 import ConnectToWallet from '@/components/ConnectToWallet/ConnectToWallet'
 import { HeaderMegaMenu } from '@/components/HeaderMegaMenu/HeaderMegaMenu'
 import { FooterSimple } from '@/components/FooterSimple/FooterSimple';
@@ -17,12 +17,12 @@ import ToggleLockCard from '@/components/ToogleLockCard/ToogleLockCard';
 import appsettings from '@/appsettings.json'
 import abi from '@/abis/DoorLockAbi.json'
 import { ethers } from 'ethers';
-import { setDoorState } from '@/redux/slices/doorLockSlice';
+import { DoorStates, setDoorState } from '@/redux/slices/doorLockSlice';
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
-        maxWidth: rem(600),
-        width: '100%',
+        width: rem(600),
+        maxWidth: '90%',
         display: 'flex',
         paddingTop: rem(20),
         alignItems: 'center',
@@ -42,9 +42,12 @@ export default function Home() {
 
     useEffect(() => {
         if (typeof (window as any).ethereum !== "undefined") {
-            if (hasMetaMask != true) {
-                dispatch(setHasMetamask(true));
+            if (hasMetaMask != HasMetaMask.Yes) {
+                dispatch(setHasMetamask(HasMetaMask.Yes));
             }
+        }
+        else {
+            dispatch(setHasMetamask(HasMetaMask.No));
         }
     });
 
@@ -59,7 +62,7 @@ export default function Home() {
             const contract = new ethers.Contract(contractAddress, abi, signer);
             contract.on("DoorStateChanged", (newState : boolean) => {
                 console.log(newState);
-                dispatch(setDoorState(newState));
+                dispatch(setDoorState(newState ? DoorStates.Open : DoorStates.Closed));
             });
         }
     }, [active]);
@@ -77,9 +80,12 @@ export default function Home() {
 
                 <Flex direction="column" justify="space-between" h="100%">
                     <div className={classes.wrapper}>
-                        {hasMetaMask === true && !active ? <ConnectToWallet></ConnectToWallet> : <></>}
+                        {hasMetaMask === HasMetaMask.Yes && !active ? <ConnectToWallet></ConnectToWallet> : <></>}
+                        {hasMetaMask === HasMetaMask.No && !active ? <Text>Please install MetaMask</Text> : <></>}
                         {active ?
                             <Group>
+                                <Title>My Home</Title>
+                                <Divider w="100%" />
                                 <ConnectedCard />
                                 <ToggleLockCard />
                             </Group>

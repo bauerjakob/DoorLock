@@ -23,7 +23,7 @@ export default function ConnectedCard() {
         <Card withBorder radius="md" className={classes.card}>
             <Group position="apart">
                 <Text className={classes.title}>Connected to</Text>
-                <Text mt={20}>{account}</Text>
+                <Text>{account}</Text>
             </Group>
         </Card>
     </>);
