@@ -5,13 +5,23 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+
+        <SshDeployHost>192.168.178.61</SshDeployHost>
+        <SshDeployTargetPath>/home/pi/blockchain</SshDeployTargetPath>
+        <SshDeployUsername>pi</SshDeployUsername>
+        <SshDeployPassword>pi</SshDeployPassword>
     </PropertyGroup>
 
-    <ItemGroup>
+     <ItemGroup>
+      <PackageReference Include="Iot.Device.Bindings" Version="2.2.0" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.3" />
       <PackageReference Include="Nethereum.Contracts" Version="4.13.0" />
       <PackageReference Include="Nethereum.JsonRpc.WebSocketClient" Version="4.13.0" />
       <PackageReference Include="Nethereum.RPC.Reactive" Version="4.13.0" />
       <PackageReference Include="Nethereum.Web3" Version="4.13.0" />
+      <PackageReference Include="System.Device.Gpio" Version="2.2.0" />
     </ItemGroup>
 
     <ItemGroup>

@@ -6,6 +6,7 @@ import { Web3Provider } from "@ethersproject/providers";
 import { MantineProvider } from '@mantine/core';
 import MetamaskProvider from "@/provider/MetamaskProvider";
 import { Provider } from 'react-redux'
+import { Notifications } from '@mantine/notifications';
 
 import store from '../redux/store'
 
@@ -27,6 +28,7 @@ function MyApp({ Component, pageProps }) {
               colorScheme: 'light',
             }}
           >
+            <Notifications />
             <Component {...pageProps} />
           </MantineProvider>
         </MetamaskProvider>

@@ -8,6 +8,7 @@ import { ethers } from "ethers";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DoorStates, setDoorState } from "@/redux/slices/doorLockSlice";
+import { notifications } from '@mantine/notifications';
 
 const useStyles = createStyles((theme) => ({
     card: {
@@ -33,6 +34,29 @@ export default function ToggleLockCard() {
         return new ethers.Contract(contractAddress, abi, signer);
     }
 
+    async function ShowNotPermittedDialog()
+    {
+        notifications.show({
+            title: 'An error occured',
+            message: 'You are not permitted to change the door state.',
+            styles: (theme) => ({
+              root: {
+                backgroundColor: theme.colors.red[6],
+                borderColor: theme.colors.red[6],
+
+                '&::before': { backgroundColor: theme.white },
+              },
+
+              title: { color: theme.white },
+              description: { color: theme.white },
+              closeButton: {
+                color: theme.white,
+                '&:hover': { backgroundColor: theme.colors.red[7] },
+              },
+            }),
+          })
+    }
+
     async function OnOpenDoorClicked() {
         if (library == undefined) {
             console.log("web 3 provider is undefined");
@@ -45,8 +69,10 @@ export default function ToggleLockCard() {
             dispatch(setDoorState(DoorStates.Pending));
 
         }
-        catch (ex) {
+        catch (ex)
+        {
             console.log(ex);
+            ShowNotPermittedDialog();
         }
     }
 
@@ -64,6 +90,7 @@ export default function ToggleLockCard() {
         }
         catch (ex) {
             console.log(ex);
+            ShowNotPermittedDialog();
         }
     }
 

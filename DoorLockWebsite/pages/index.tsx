@@ -18,6 +18,7 @@ import appsettings from '@/appsettings.json'
 import abi from '@/abis/DoorLockAbi.json'
 import { ethers } from 'ethers';
 import { DoorStates, setDoorState } from '@/redux/slices/doorLockSlice';
+import { current } from '@reduxjs/toolkit';
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -60,6 +61,16 @@ export default function Home() {
     useEffect(() => {
         if (active) {
             const contract = new ethers.Contract(contractAddress, abi, signer);
+            
+            const getCurrentState = async () => {
+                const currentState = await contract.DoorState()
+                console.log("currentState", currentState)
+                return currentState ? DoorStates.Open : DoorStates.Closed;
+            }
+
+            getCurrentState().then(val => dispatch(setDoorState(val)));
+
+
             contract.on("DoorStateChanged", (newState : boolean) => {
                 console.log(newState);
                 dispatch(setDoorState(newState ? DoorStates.Open : DoorStates.Closed));
