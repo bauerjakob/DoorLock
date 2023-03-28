@@ -32,8 +32,6 @@ jobs:
      # run:
       #  working-directory: ./DoorLockWebsite
     steps:
-      - name: Change directory
-        run: cd ${{github.workspace}}/DoorLockWebsite
       - name: Checkout
         uses: actions/checkout@v3
       - name: Detect package manager
@@ -53,6 +51,8 @@ jobs:
             echo "Unable to determine package manager"
             exit 1
           fi
+      - name: Change directory
+        run: cd ${{github.workspace}}/DoorLockWebsite
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
