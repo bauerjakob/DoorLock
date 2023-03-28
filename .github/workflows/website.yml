@@ -33,7 +33,7 @@ jobs:
       #  working-directory: ./DoorLockWebsite
     steps:
       - name: Change directory
-        run: cd ./DoorLockWebsite
+        run: cd ${{github.workspace}}/DoorLockWebsite
       - name: Checkout
         uses: actions/checkout@v3
       - name: Detect package manager
