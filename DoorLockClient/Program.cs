@@ -6,25 +6,17 @@ using DoorLockClient.Worker;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 
-static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .UseSystemd()
-        .ConfigureServices((hostContext, services) =>
-        {
-            services.AddHostedService<DoorLockWorker>();
-        });
-                                                                             
-                                                                             
-// var appsettings = await File.ReadAllTextAsync("./appsettings.json");
-// var clientOptions = JsonConvert.DeserializeObject<DoorLockClientOptions>(appsettings);
-//
-// var doorLockService = new DoorLockService(clientOptions);
-//
-// while (true)
-// {
-//     var state = await doorLockService.GetDoorLockState();
-//     Console.WriteLine(state);
-//
-//     await Task.Delay(TimeSpan.FromSeconds(3));
-// }   
-//
+var appsettings = await File.ReadAllTextAsync("./appsettings.json");
+var clientOptions = JsonConvert.DeserializeObject<DoorLockClientOptions>(appsettings);
+
+var doorLockContractService = new DoorLockContractService(clientOptions);
+var doorLockPhysicalService = new DoorLockPhysicalService();
+
+while (true)
+{
+    var state = await doorLockContractService.GetDoorLockState();
+    Console.WriteLine(state);
+    doorLockPhysicalService.SetDoorLockState(state);
+    await Task.Delay(TimeSpan.FromSeconds(3));
+}
+

@@ -5,23 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ccbc6743-cc5a-4728-9330-ce9493dd5608" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Scripts/CloseLock.bash" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scripts/OpenLock.bash" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worker/DoorLockWorker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DoorLockClient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DoorLockClient/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DoorLockClient.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DoorLockClient.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/DoorLockState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/DoorLockState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Options/DoorLockClientOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Options/DoorLockClientOptions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/DoorLockContractService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Services/DoorLockPhysicalService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/DoorLockService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/DoorLockService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/components/ToogleLockCard/ToogleLockCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/components/ToogleLockCard/ToogleLockCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/pages/_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/utils/connectors.js" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/utils/connectors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DoorLockWebsite/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../DoorLockWebsite/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/DoorLockService.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +19,7 @@
     <setting file="file://$PROJECT_DIR$/Models/DoorLockState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Options/DoorLockClientOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Services/DoorLockService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Services/DoorLockPhysicalService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/global.json" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -93,6 +80,7 @@
       <workItem from="1679415484800" duration="629000" />
       <workItem from="1679749911548" duration="6310000" />
       <workItem from="1679847405706" duration="2791000" />
+      <workItem from="1680095462872" duration="338000" />
     </task>
     <servers />
   </component>
